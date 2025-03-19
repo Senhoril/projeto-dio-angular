@@ -1,59 +1,58 @@
-# ProjetoDioAngular
+# Meu To-Do List
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+Este é um aplicativo simples de lista de tarefas (To-Do List) desenvolvido com Angular. Ele permite que você adicione, visualize e exclua tarefas, ajudando na organização do seu dia a dia.
 
-## Development server
+## Tecnologias Utilizadas
 
-To start a local development server, run:
+* [Angular](https://angular.io/)
+* [TypeScript](https://www.typescriptlang.org/)
+* HTML
+* CSS
 
-```bash
-ng serve
+## Funcionalidades
+
+* **Adicionar novas tarefas:** Permite que o usuário insira e adicione novas atividades à sua lista.
+* **Visualizar a lista de tarefas:** Exibe todas as tarefas adicionadas de forma clara e organizada.
+* **Excluir tarefas da lista:** Oferece a funcionalidade de remover tarefas que já foram concluídas ou não são mais necessárias.
+
+## Contribuição
+
+Se você quiser contribuir para este projeto, sinta-se à vontade para abrir uma issue para relatar problemas ou sugerir melhorias. Pull requests com contribuições são bem-vindos!
+
+```mermaid
+classDiagram
+  class AppComponent {
+    title: string
+  }
+  class AddTodoComponent {
+    newTodoText: string
+    constructor(todoService: TodoService)
+    addTodo()
+  }
+  class TodoListComponent {
+    todos: Todo
+    constructor(todoService: TodoService)
+    ngOnInit()
+    removeTodo(id: number)
+  }
+  class TodoService {
+    -todos: Todo
+    -nextId: number
+    constructor()
+    getTodos(): Todo
+    addTodo(text: string)
+    removeTodo(id: number)
+  }
+  class Todo {
+    +id: number
+    +text: string
+    +completed: boolean
+  }
+
+  AppComponent --|> AddTodoComponent
+  AppComponent --|> TodoListComponent
+  AddTodoComponent --|> TodoService
+  TodoListComponent --|> TodoService
+  TodoListComponent --|> Todo
+  TodoService ..> Todo
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
